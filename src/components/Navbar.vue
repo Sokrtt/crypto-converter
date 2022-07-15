@@ -19,6 +19,7 @@
     </div>
   </nav>
 </template>
+
 <script>
 import ModalWindow from "@/components/UI/ModalWindow";
 import {mapState, mapGetters, mapActions, mapMutations} from 'vuex'
@@ -69,7 +70,6 @@ export default {
         box-shadow: inset 0 -3px 0 -1px #0032c1;
       }
     }
-
 
     &__link:last-child {
       margin-right: 0;

@@ -1,6 +1,6 @@
 <template>
   <section class="converter">
-    <h1>Converter Currency</h1>
+    <h1>Конвертер криптовалюты</h1>
     <div v-if="isFetchingPage">
       Идет загрузка...
     </div>
@@ -10,13 +10,13 @@
           <div class="converter__left__currency">
             <input
                 v-model="this.inputCountLeft"
-                @keydown.enter="getPriceCurrencyVsCurrency"
+                @keydown.enter="this.getPriceCurrencyVsCurrency"
                 type="text"
                 class="converter__left__currency-input"
             >
             <mySelect
-                v-model="selectedCurrenciesLeft"
-                :options="currenciesLeftSelect"
+                v-model="this.selectedCurrenciesLeft"
+                :options="this.currenciesLeftSelect"
                 class="converter__left__currency-select"
             >
             </mySelect>
@@ -45,8 +45,8 @@
                 disabled
            >
             <mySelect
-                v-model="selectedCurrenciesRight"
-                :options="currenciesRightSelect"
+                v-model="this.selectedCurrenciesRight"
+                :options="this.currenciesRightSelect"
                 class="converter__right__price-select"
             >
             </mySelect>
@@ -62,18 +62,14 @@
           </div>
         </div>
       </div>
-<!--      <div class="converter__additional">-->
-<!--        <div class="converter__chart">-->
-<!--          Вывести диаграму относительно BTC k USD-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
   </section>
 </template>
 
 <script>
-import axios from "axios";
 import MySelect from "@/components/UI/mySelect";
+
+import axios from "axios";
 
 export default {
   components: {MySelect},
@@ -120,7 +116,6 @@ export default {
         const response = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${curCurrency}&vs_currencies=${this.selectedCurrenciesRight}&include_24hr_vol=true&include_24hr_change=true`);
         let price = this.inputCountLeft * response.data[curCurrency][this.selectedCurrenciesRight.toLowerCase()];
         this.changeCurrency = response.data[curCurrency][change24h].toFixed('2');
-        debugger
         this.volumeCurrency  = Math.ceil(response.data[curCurrency][vol24h]).toLocaleString('en');
         this.selectedRate = (
             Number.isInteger(price)
@@ -143,14 +138,11 @@ export default {
       this.getPriceCurrencyVsCurrency();
     },
     selectedCurrenciesLeft() {
-      this.getPriceCurrencyVsCurrency();
+      this.getPriceCurrencyVsCurrency()
     },
     selectedCurrenciesRight() {
-      this.getPriceCurrencyVsCurrency();
+      this.getPriceCurrencyVsCurrency()
     },
-    selectedRate(newValue){
-      console.log(newValue)
-    }
   },
 }
 </script>
@@ -173,7 +165,9 @@ input:disabled {
 
 .converter {
   color: #fff;
-
+  h1 {
+    color: #212529;
+  }
   &__inner {
     display: flex;
     flex-direction: column;
@@ -219,8 +213,6 @@ input:disabled {
         }
       }
 
-
-
       &-select {
         padding: 6px;
         background-color: antiquewhite;
@@ -242,18 +234,18 @@ input:disabled {
 
     &__change-txt input,
     &__volume-txt input {
-      font-size: 16px;
       width: 30px;
       text-align: left;
+      font-size: 16px;
     }
   }
 
   &__middle:before {
     content: "";
     background-image: url('../asset/icon_equals.png');
-    padding: 15px 30px 0;
     background-repeat: no-repeat;
     background-position: top;
+    padding: 15px 30px 0;
   }
 
   &__currencies {

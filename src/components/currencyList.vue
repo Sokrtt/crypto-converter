@@ -16,7 +16,6 @@
           :options="this.selectOptionsPeriodChart"
           class="currencies__header__period-select"
         >
-
         </mySelect>
       </div>
     </div>
@@ -57,18 +56,17 @@ export default {
   data() {
     return {
       currencies: [],
-      selectedPeriodChart: '7',
+      selectedPeriodChart: '30',
       selectOptionsPeriodChart: ['7', '14', '30', '60', '90'],
       searchQuery: '',
       isFetchingPageList: false,
     }
   },
   methods: {
-    async getCurrenciesOptionsSelect(periodDay = 7) {
+    async getCurrenciesOptionsSelect(periodDay = 30) {
       try {
         this.isFetchingPageList = true;
         this.currencies = [];
-        // const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&ethereum&sparkline=false&price_change_percentage=${periodDay}d`);
         const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&price_change_percentage=1h%2C24h%2C7d`);
         response.data.map(async (item, index) => {
           const response2 = await this.getPriceForChart(item.id, periodDay)
@@ -90,17 +88,6 @@ export default {
         console.error(e);
       }
     },
-    sortedPosts(sortedValue) {
-      //   debugger
-      //   const arr2 = this.currencies.sort((item1, item2) => {
-      //     debugger
-      //     return item1[sortedValue] - item2[sortedValue];
-      //     // item1[sortedValue]?.localeCompare(item2[sortedValue])
-      // })
-      //
-      // debugger
-      // return arr2;
-    },
     searchCurrency() {
       return this.currencies.filter(item => item.id.toLowerCase().includes(this.searchQuery.toLowerCase()))
     },
@@ -108,21 +95,12 @@ export default {
 
   watch: {
     selectedPeriodChart(newValue) {
-      debugger
       this.getCurrenciesOptionsSelect(newValue);
     },
-  },
-
-  computed: {
-    // searchCurrency() {
-    //   debugger
-    //   return this.currencies.filter(item => item.id.toLowerCase().includes(this.searchQuery.toLowerCase()))
-    // },
   },
   mounted() {
     debugger
     this.getCurrenciesOptionsSelect();
-    // this.getPriceForChart();
   },
 }
 </script>
@@ -145,7 +123,7 @@ export default {
 
       &__search {
         position: relative;
-        margin: 14px;
+        padding: 14px;
 
         &-input {
           background: url("../asset/icon-search.png")  left 4px center no-repeat;
@@ -163,6 +141,7 @@ export default {
       }
 
       &__period {
+        padding: 14px;
 
         &-select {
           padding: 10px 5px;
@@ -199,8 +178,4 @@ export default {
       }
     }
   }
-
-
-
-
 </style>

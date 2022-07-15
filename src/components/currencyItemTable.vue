@@ -6,7 +6,6 @@
   >
     <td class="currencies__item-name" >
       <img :src="item.image" class="currencies__item-logo">
-<!--      <label class="currencies__item-title" style="vertical-align: middle">{{item?.name}}</label>-->
       {{item?.name}}
     </td>
     <td
@@ -14,7 +13,6 @@
     >
       {{item.current_price.toLocaleString('en')}} $
     </td>
-<!-- в запросе к API при смене количества дней меняется название переменой 14d 30d 1d нужно менять эту переменую  price_change_percentage_14d_in_currency   -->
     <td
         :class="item.price_change_percentage_1h_in_currency > 0 ? 'green-txt' : 'red-txt'"
         class="currencies__item-change"
@@ -48,7 +46,7 @@
 </template>
 
 <script>
-import myChart from "@/components/profile/myChart";
+import myChart from "@/components/myChart";
 
 export default {
   components: {myChart },
@@ -62,10 +60,6 @@ export default {
       type: String,
       default: ''
     },
-  },
-  mounted() {
-    console.log(this.searchCurrencies)
-    debugger
   },
 }
 </script>

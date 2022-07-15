@@ -1,19 +1,16 @@
 <template>
   <section class="dashboard">
-    <h1>Profile</h1>
+    <h1>Портфель</h1>
     <div class="dashboard__inner">
       <div class="profile">
-
       </div>
       <div class="lk">
-
       </div>
       <div class="currencies">
         <div class="currencies__inner">
           <currency-list></currency-list>
         </div>
       </div>
-
     </div>
   </section>
 </template>
@@ -32,9 +29,6 @@ export default {
     border: 1px solid #5b616e33;
     border-radius: 4px;
 
-    &__inner {
-
-    }
   }
 
   .currencies {
