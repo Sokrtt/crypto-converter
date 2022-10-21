@@ -1,6 +1,6 @@
 <template>
   <div class="modal-form" >
-    <div class="modal-form__overlay" @click="setIsShowModalForm('false')"></div>
+<!--    <div class="modal-form__overlay" @click="setIsShowModalForm('false')"></div>-->
       <slot></slot>
   </div>
 </template>

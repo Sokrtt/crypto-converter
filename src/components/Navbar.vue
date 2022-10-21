@@ -4,16 +4,17 @@
       <div class="navbar__logo" @click="$router.push('/')">
         <img src="@/asset/icon-logo.png">
       </div>
+      <div>Store State "isShowModalForm" -> {{isShowModalForm}}</div>
       <div class="navbar__links" v-if="isAuth">
         <a @click="$router.push('/')" class="navbar__link">Конвертер</a>
         <a class="navbar__link" @click="$router.push('/lk')">Портфель</a>
         <a class="navbar__link" @click="setIsAuth('false')">Выйти</a>
       </div>
       <div class="navbar__links" v-else>
-        <ModalWindow v-if="isShowModalForm" :setIsShowModalForm="setIsShowModalForm">
+        <ModalWindow v-if="isShowModalForm" :setIsShowModalForm="setIsShowModalForm" >
           <AuthForm :setIsShowModalForm="setIsShowModalForm"></AuthForm>
         </ModalWindow>
-        <a class="navbar__link" @click="setIsShowModalForm('true')" >Войти</a>
+        <a class="navbar__link" @click="setIsShowModalForm('true')">Войти</a>
         <a class="navbar__link" @click="setIsShowModalForm('false')">Регистрация</a>
       </div>
     </div>

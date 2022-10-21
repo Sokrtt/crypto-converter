@@ -16,7 +16,7 @@
       <button
           class="modal-form__btn-submit"
       >
-        Создать
+        Войтиы
       </button>
     </div>
   </form>

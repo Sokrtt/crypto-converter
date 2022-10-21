@@ -43,7 +43,7 @@
                 type="text"
                 class="converter__right__price-input"
                 disabled
-           >
+            >
             <mySelect
                 v-model="this.selectedCurrenciesRight"
                 :options="this.currenciesRightSelect"
@@ -55,12 +55,15 @@
              <span class="converter__left__volume-txt">
                Volume: $
                <input
-                 v-model="this.volumeCurrency"
-                 contenteditable="true"
-                 disabled
+                   v-model="this.volumeCurrency"
+                   contenteditable="true"
+                   disabled
                >B</span>
           </div>
         </div>
+      </div>
+      <div class="">
+
       </div>
     </div>
   </section>
@@ -85,7 +88,6 @@ export default {
       changeCurrency: '',
       volumeCurrency: '',
       isFetchingPage: false,
-      isAuth: false,
       users: {
         login: 'user',
         password: '123'
@@ -116,11 +118,11 @@ export default {
         const response = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${curCurrency}&vs_currencies=${this.selectedCurrenciesRight}&include_24hr_vol=true&include_24hr_change=true`);
         let price = this.inputCountLeft * response.data[curCurrency][this.selectedCurrenciesRight.toLowerCase()];
         this.changeCurrency = response.data[curCurrency][change24h].toFixed('2');
-        this.volumeCurrency  = Math.ceil(response.data[curCurrency][vol24h]).toLocaleString('en');
+        this.volumeCurrency = Math.ceil(response.data[curCurrency][vol24h]).toLocaleString('en');
         this.selectedRate = (
             Number.isInteger(price)
-            ? price
-            : price?.toFixed(2)
+                ? price
+                : price?.toFixed(2)
         ).toLocaleString('en');
       } catch (e) {
         console.log(e);
@@ -165,9 +167,11 @@ input:disabled {
 
 .converter {
   color: #fff;
+
   h1 {
     color: #212529;
   }
+
   &__inner {
     display: flex;
     flex-direction: column;
@@ -222,7 +226,7 @@ input:disabled {
     }
 
     &__change,
-    &__volume  {
+    &__volume {
       margin-top: 14px;
       text-align: center;
     }
@@ -260,7 +264,5 @@ input:disabled {
       height: 50px;
     }
   }
-
 }
-
 </style>

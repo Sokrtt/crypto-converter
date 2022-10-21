@@ -65,25 +65,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .currencies__item {
-    line-height: 42px;
+.currencies__item {
+  line-height: 42px;
 
-    &-name {
-      text-align: left;
-      padding-left: 22px;
-      width: 180px;
-    }
-
-    &-logo {
-      width: 32px;
-      height: 32px;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-
-    &-title {
-      vertical-align: center;
-    }
+  &-name {
+    text-align: left;
+    padding-left: 22px;
+    width: 180px;
   }
+
+  &-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  &-title {
+    vertical-align: center;
+  }
+}
 
 </style>
