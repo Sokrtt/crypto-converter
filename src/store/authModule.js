@@ -1,6 +1,6 @@
 export const authModule = {
     state: () => ({
-        isAuth: true,
+        isAuth: false,
         isShowModalForm: false,
     }),
     getters: {
